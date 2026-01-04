@@ -32,9 +32,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+let isConnected = false;
 (async () => {
   try {
+    if (isConnected) return;
     await mongoose.connect(process.env.MONGO_URI);
+    isConnected = true;
     console.log("MongoDB Connected");
   } catch (err) {
     console.error("MongoDB Connection Error:", err);
