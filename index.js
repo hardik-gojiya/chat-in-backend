@@ -51,10 +51,9 @@ app.use("/api/users", userroutes);
 app.use("/api/message", messageRoute);
 
 // deploy
-app.use(express.static(path.join(_dirname, "/frontend/dist")));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
 });
 
 // server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-export default server;
+export default app;
